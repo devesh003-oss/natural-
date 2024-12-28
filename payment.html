@@ -45,6 +45,11 @@
     .payment-form button:hover {
       background-color: #0056b3;
     }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
@@ -54,10 +59,18 @@
       <!-- Product details will be dynamically added here -->
     </div>
     <form id="paymentForm">
-      <input type="text" id="cardNumber" placeholder="Card Number" required>
-      <input type="text" id="cardHolder" placeholder="Card Holder Name" required>
-      <input type="text" id="expiryDate" placeholder="Expiry Date (MM/YY)" required>
-      <input type="text" id="cvv" placeholder="CVV" required>
+      <input type="text" id="cardNumber" placeholder="Card Number" maxlength="16" pattern="\d{16}" required>
+      <small class="error" id="cardNumberError"></small>
+
+      <input type="text" id="cardHolder" placeholder="Card Holder Name" pattern="^[A-Za-z\s]+$" required>
+      <small class="error" id="cardHolderError"></small>
+
+      <input type="text" id="expiryDate" placeholder="Expiry Date (MM/YY)" pattern="^(0[1-9]|1[0-2])/(\d{2})$" required>
+      <small class="error" id="expiryDateError"></small>
+
+      <input type="text" id="cvv" placeholder="CVV" maxlength="3" pattern="\d{3}" required>
+      <small class="error" id="cvvError"></small>
+
       <button type="submit">Pay Now</button>
     </form>
   </div>
@@ -77,18 +90,53 @@
       productDetailsDiv.innerHTML = `<p>No product selected.</p>`;
     }
 
-    document.getElementById('paymentForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting normally
+    const form = document.getElementById('paymentForm');
+    form.addEventListener('submit', function(event) {
+      const cardNumber = document.getElementById('cardNumber');
+      const cardHolder = document.getElementById('cardHolder');
+      const expiryDate = document.getElementById('expiryDate');
+      const cvv = document.getElementById('cvv');
 
-      // Simulate successful payment
-      alert('Payment successful! Redirecting...');
+      const errors = {
+        cardNumber: !cardNumber.checkValidity(),
+        cardHolder: !cardHolder.checkValidity(),
+        expiryDate: !expiryDate.checkValidity(),
+        cvv: !cvv.checkValidity(),
+      };
 
-      // Redirect to thank you page after 2 seconds
-      setTimeout(function() {
-        window.location.href = 'thankyou.html'; // Redirect to thank-you page
-      }, 2000);
+      document.getElementById('cardNumberError').textContent = errors.cardNumber ? 'Please enter a valid 16-digit card number.' : '';
+      document.getElementById('cardHolderError').textContent = errors.cardHolder ? 'Please enter a valid name (letters and spaces only).' : '';
+      document.getElementById('expiryDateError').textContent = errors.expiryDate ? 'Please enter a valid expiry date in MM/YY format.' : '';
+      document.getElementById('cvvError').textContent = errors.cvv ? 'Please enter a valid 3-digit CVV.' : '';
+
+      if (Object.values(errors).some(error => error)) {
+        event.preventDefault(); // Prevent form submission if there are errors
+      } else {
+        // Simulate successful payment
+        alert('Payment successful! Redirecting...');
+
+        // Redirect to thank you page after 2 seconds
+        setTimeout(function() {
+          window.location.href = 'thankyou.html'; // Redirect to thank-you page
+        }, 2000);
+      }
     });
+
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Simulate payment success
+        alert('Payment successful! Redirecting...');
+
+        // Clear the cart
+        localStorage.removeItem('cart');
+
+        // Redirect to thank-you page after 2 seconds
+        setTimeout(function() {
+            window.location.href = 'thankyou.html';
+        }, 2000);
+    });
+
   </script>
 </body>
-
 </html>

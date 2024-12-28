@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .cart-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .cart-total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div id="cart"></div>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button id="buyNowButton" onclick="redirectToPayment()">Buy Now</button>
+
+
+    <script>
+        // Clear cart function
+        function clearCart() {
+            localStorage.removeItem('cart');
+            location.reload(); // Reload the page to reflect changes
+        }
+
+        // Retrieve cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContainer = document.getElementById('cart');
+        const buyNowButton = document.getElementById('buyNowButton');
+
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+            buyNowButton.style.display = 'none'; // Hide "Buy Now" button if the cart is empty
+        } else {
+            let total = 0;
+            cartContainer.innerHTML = cart
+                .map((item) => {
+                    total += item.price;
+                    return `
+                        <div class="cart-item">
+                            <h4>${item.name}</h4>
+                            <p>Price: ${item.price}</p>
+                        </div>
+                    `;
+                })
+                .join('');
+            cartContainer.innerHTML += `<p class="cart-total">Total: ${total.toFixed(2)}</p>`;
+        }
+
+        
+
+    // Function to redirect to the payment page and pass the total price
+    function redirectToPayment() {
+        const total = cart.reduce((sum, item) => sum + item.price, 0); // Calculate total price
+        const selectedProduct = {
+            name: "Cart Total",
+            price: total.toFixed(2)
+        };
+        localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct)); // Save total to localStorage
+        window.location.href = 'payment.html'; // Redirect to payment page
+    }
+    
+
+            
+    </script>
+</body>
+</html>

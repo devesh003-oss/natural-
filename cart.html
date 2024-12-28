@@ -38,7 +38,6 @@
     <button onclick="clearCart()">Clear Cart</button>
     <button id="buyNowButton" onclick="redirectToPayment()">Buy Now</button>
 
-
     <script>
         // Clear cart function
         function clearCart() {
@@ -70,9 +69,18 @@
             cartContainer.innerHTML += `<p class="cart-total">Total: ${total.toFixed(2)}</p>`;
         }
 
-        
-
-    // Function to redirect to the payment page and pass the total price
+        // Function to redirect to the payment page and pass the total price
+        function redirectToPayment() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0); // Calculate total price
+            const selectedProduct = {
+                name: "Cart Total",
+                price: total.toFixed(2)
+            };
+            localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct)); // Save total to localStorage
+            localStorage.removeItem('cart'); // Clear the cart
+            window.location.href = 'thankyou.html'; // Redirect to thank-you page
+        }
+    
     function redirectToPayment() {
         const total = cart.reduce((sum, item) => sum + item.price, 0); // Calculate total price
         const selectedProduct = {
@@ -82,9 +90,8 @@
         localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct)); // Save total to localStorage
         window.location.href = 'payment.html'; // Redirect to payment page
     }
-    
 
-            
+
     </script>
 </body>
 </html>

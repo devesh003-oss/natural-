@@ -74,56 +74,63 @@
         <div class="product">
             <img src="https://static.toiimg.com/photo/108036977.cms" alt="Product 1">
             <h3>Milk </h3>
-            <p>100.</p><button class="buy-now-btn" onclick="addToCart(' milk', 100)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('milk', 100)">Buy Now</button>
+            <p>100.</p><button class="buy-now-btn" onclick="addToCart(' milk', 100)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('milk', 100)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://vanitascorner.com/wp-content/uploads/2019/06/Making-curd.jpg" alt="Product 2">
             <h3>curd</h3>
-            <p>140</p><button class="buy-now-btn" onclick="addToCart('curd', 300)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('curd', 140)">Buy Now</button>
+            <p>140</p><button class="buy-now-btn" onclick="addToCart('curd', 140)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('curd', 140)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://www.indianveggiedelight.com/wp-content/uploads/2023/03/shrikhand-featured.jpg" alt="Product 3">
             <h3>Shrikhand</h3>
-            <p>300.</p><button class="buy-now-btn" onclick="addToCart('shrikhnad', 300)">Add to Cart</button>
-            <button class="buy-now-btn" onclick="redirectToPayment('shrikhnad', 300)">Buy Now</button>
+            <p>200.</p><button class="buy-now-btn" onclick="addToCart('shrikhnad', 200)">Add to Cart</button>
+            <button class="buy-now-btn" onclick="buyNow('shrikhnad', 200)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://insanelygoodrecipes.com/wp-content/uploads/2023/05/Glasses-of-Homemade-Buttermilk-Made-from-Yogurt.jpg" alt="Product 4">
             <h3>Buttermilk</h3>
-            <p>.300</p><button class="buy-now-btn" onclick="addToCart('buttermilk', 300)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('buttermilk', 300)">Buy Now</button>
+            <p>.300</p><button class="buy-now-btn" onclick="addToCart('buttermilk', 300)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('buttermilk', 300)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://www.savoryexperiments.com/wp-content/uploads/2023/06/Butter-13.jpg" alt="Product 5">
             <h3>Butter</h3>
-           <p>400</p> <button class="buy-now-btn" onclick="addToCart('butter', 300)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('buttter', 400)">Buy Now</button>
+           <p>400</p> <button class="buy-now-btn" onclick="addToCart('butter', 400)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('buttter', 400)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://www.sharmispassions.com/wp-content/uploads/2014/12/basundi4.jpg" alt="Product 6">
             <h3>Basundi</h3>
-            <p>500</p><button class="buy-now-btn" onclick="addToCart('basundi', 300)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('basundi', 500)">Buy Now</button>
+            <p>500</p><button class="buy-now-btn" onclick="addToCart('basundi', 500)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('basundi', 500)">Buy Now</button>
         </div>
         <div class="product">
             <img src="https://www.sharmispassions.com/wp-content/uploads/2012/09/homemade-paneer.jpg" alt="Product 7">
             <h3>paneer</h3>
-            <p>.600</p><button class="buy-now-btn" onclick="addToCart(' Paneer', 300)">Add to Cart</button><button class="buy-now-btn" onclick="redirectToPayment('paneer', 600)">Buy Now</button>
+            <p>.600</p><button class="buy-now-btn" onclick="addToCart(' Paneer', 600)">Add to Cart</button><button class="buy-now-btn" onclick="buyNow('paneer', 600)">Buy Now</button>
         </div>
         
     </div>
   </main> <a href="cart.html">Go to Cart</a>
   <script>
-    function redirectToPayment() {
-      window.location.href = 'payment.html'; // Redirect to payment page
-    }
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
     function addToCart(name, price) {
-            // Add product to cart
-            cart.push({ name, price });
-    
-            // Save cart to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-    
-            alert(`${name} added to cart!`);
-        }
+        // Add product to cart
+        cart.push({ name, price });
+
+        // Save cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${name} added to cart!`);
+    }
+
+    function buyNow(name, price) {
+        // Save the selected product details to localStorage
+        const selectedProduct = { name, price };
+        localStorage.setItem('selectedProduct', JSON.stringify(selectedProduct));
+
+        // Redirect to the payment page
+        window.location.href = 'payment.html';
+    }
   </script>
 </body>
 </html>

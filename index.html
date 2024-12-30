@@ -166,6 +166,7 @@
       background-color: aliceblue;
       display: flex;
       flex-direction: column;
+
     }
 
     
@@ -384,11 +385,16 @@ justify-content: space-evenly;
     .search input {
       width: 100%;
     }
-
     .box {
-      height: auto;
-      width: 155%;
-    }
+    background-image: url('img.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image in the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    width: 100%; /* Makes the div responsive */
+    height: 90vh; /* Sets the height to full viewport height */
+}
+
+    
 
     .product .gallery {
       width: 100%;
@@ -402,6 +408,9 @@ justify-content: space-evenly;
     .final {
       flex-direction: column;
       align-items: center;
+      justify-items: center;
+      justify-content: space-evenly;
+      
     }
 
     .lst1 img {
@@ -476,19 +485,19 @@ justify-content: space-evenly;
       <a href="login.html" style="text-decoration: none; color: #55883B;">Login</a>
     </div>
     <div class="cart">
-      <a href="cart.html" style="text-decoration: none;color: #55883B;">My cart</a>
+      <a href="cart.html" style="text-decoration: none;color: #55883B;">Cart</a>
     </div>
   </div>
   <div class="below">
     <div class="veg">
       <a href="link.html" style="text-decoration: none;">Fresh</a>
     </div>
-    <div class="best"><a href="milk.html" style="text-decoration: none;">Best seller</a></div>
+    <div class="best"><a href="milk.html" style="text-decoration: none;">Best </a></div>
     <div class="fruit">
-      <a href="veg.html" style="text-decoration: none;">Vegetables and fruit</a>
+      <a href="veg.html" style="text-decoration: none;">Vegetables</a>
     </div>
-    <div class="milk"><a href="milk.html" style="text-decoration: none; ">Milk products</a></div>
-    <div class="nat"><a href="oil.html" style="text-decoration: none;">Other natural product</a></div>
+    <div class="milk"><a href="milk.html" style="text-decoration: none; ">Milk </a></div>
+    <div class="nat"><a href="oil.html" style="text-decoration: none;">Other </a></div>
   </div>
 
   <div class="box">
@@ -524,7 +533,7 @@ justify-content: space-evenly;
       <div class="gallery">
         <a target="_blank" href="https://www.mishry.com/wp-content/uploads/2020/08/best-dairy-products.png">
           <img src="https://www.mishry.com/wp-content/uploads/2020/08/best-dairy-products.png" alt="Cinque Terre"
-            height="400px" width="900px">
+            height="400px"  style="position: relative; left:00px">
         </a>
         <div class="desc">Milk products</div><a href="milk.html"id="homelink" style="position: relative; left:100px">See More</a>
       </div>
@@ -550,7 +559,7 @@ justify-content: space-evenly;
       <h1 style="color: #242222; text-align: center; text-decoration: underline;"> Heartfelt Reviews</h1>
     </div>
     <div class="revgrid">
-      <div class="gri">
+      <div class="gri" id="typo">
         <h2 style="text-align: center; color: rgb(5, 5, 123);">Pure Goodness in Every Spoon</h2><p style="text-align: center; word-spacing:0.6em;">
         I recently tried the ghee from this brand, and it was a game-changer for my cooking! The aroma is rich and
         natural, and it adds such a delightful flavor to everything I prepare. Knowing it's made with organic
@@ -568,15 +577,14 @@ justify-content: space-evenly;
       <div class="logiism">
         <br><br>
         <h2> Natural Bliss</h2>
-        <h4>Central India's most trusted brand for
-          <br>natural products.
+        <h4>Central India's most trusted brand .
         </h4>
       </div>
       <div class="add">
         <h2>Address<br></h2>
         <h4>
-          160, Por Industrial Park, NH 48,<br>
-          Por, Nagpur 391243, INDIA</h4>
+          160, Por Park, NH 48,<br>
+         Nagpur 391243, INDIA</h4>
       </div>
       <div class="cont">
         <h2> Contact Us<br></h2>
@@ -588,8 +596,7 @@ justify-content: space-evenly;
       <div class="ekum">
       <h3 style="color: #000000; text-align: left;">Information</h3><br>
 
-      <a href="#">Search</a>
-      <br>
+      
       <a href="#">About Us</a>
       <br>
       <a href="naturalbliss.com">Privacy Policy</a>
@@ -599,8 +606,8 @@ justify-content: space-evenly;
     <div class="ekum">
       <h3 style="color: #000000; text-align: center;">Customer Service</h3><br>
 
-      <a href="godaddy.com">Shipping</a><br>
-      <a href="googlepay.com">Payments</a><br>
+      
+      
         <a href="cancelrequest.in">Cancellation</a><br>
         <a href="track.com">Track order</a><br>
     </div>
@@ -608,7 +615,7 @@ justify-content: space-evenly;
       <h3 style="color: #000000; text-align: right;">Enquiry</h3><br>
 
       <a href="getlive.com">Enquiry</a><br>
-        <a href="cet.com">Certification</a><br>
+        
           <a href="cat.in">Catalogue</a><br>
             
     </div>
@@ -621,9 +628,9 @@ justify-content: space-evenly;
       Copyright © 2024 by Naturalbliss.com
     </div>
    <div class="lst1">
-    <img src="https://png.pngtree.com/png-clipart/20221019/original/pngtree-whatsapp-mobile-software-icon-png-image_8704828.png" height="60px">
-    <img src="https://cdn.pixabay.com/photo/2016/08/09/17/52/instagram-1581266_1280.jpg" height="60px">
-    <img src="https://store-images.s-microsoft.com/image/apps.30645.9007199266245907.cb06f1f9-9154-408e-b4ef-d19f2325893b.ac3b465e-4384-42a8-9142-901c0405e1bc" height="60px">
+    <img src="https://png.pngtree.com/png-clipart/20221019/original/pngtree-whatsapp-mobile-software-icon-png-image_8704828.png" height="40px">
+    <img src="https://cdn.pixabay.com/photo/2016/08/09/17/52/instagram-1581266_1280.jpg" height="40px">
+    <img src="https://store-images.s-microsoft.com/image/apps.30645.9007199266245907.cb06f1f9-9154-408e-b4ef-d19f2325893b.ac3b465e-4384-42a8-9142-901c0405e1bc" height="40px">
    </div>
   </div>
   <script>
